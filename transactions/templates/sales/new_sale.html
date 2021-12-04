@@ -23,7 +23,7 @@
             {{ form.phone.errors }}
             {{ form.email.errors }}
             {{ form.address.errors }}
-            {{ form.gstin.errors }}
+            {% comment %} {{ form.gstin.errors }} {% endcomment %}
 
             <div class="form-group">
                 <label for="{{ form.name.id_for_label }}" class="panel-body-text">Customer Name:</label>
@@ -45,10 +45,10 @@
                 <label for="{{ form.address.id_for_label }}" class="panel-body-text">Address:</label>
                 {{ form.address }}
             </div>
-            <div class="form-group">
+            {% comment %} <div class="form-group">
                 <label for="{{ form.gstin.id_for_label }}" class="panel-body-text">GSTIN No:</label>
                 {{ form.gstin }}
-            </div>
+            </div> {% endcomment %}
 
         </div>
 

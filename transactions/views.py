@@ -113,7 +113,6 @@ class SupplierView(View):
 # shows the list of bills of all purchases 
 class PurchaseView(ListView):
     model = PurchaseBill
-    mc = PurchaseItem.object.filter(billno=billno)
     template_name = "purchases/purchases_list.html"
     context_object_name = 'bills'
     ordering = ['-time']

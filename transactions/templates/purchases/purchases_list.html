@@ -25,7 +25,7 @@
                 <th width="15%">Supplier</th>
                 <th width="15%">Stocks Purchased</th>
                 <th width="10%">Quantity Purchased</th>
-                <th width="10%">Price Per Price </th>
+                {% comment %} <th width="10%">Price Per Price </th> {% endcomment %}
                 <th width="15%">Total Purchased Price</th>
                 <th width="10%">Purchased Date</th>
                 <th width="25%">Options</th>
@@ -43,13 +43,13 @@
                         {{ purchase.supplier }}<br> 
                     {% else %}
                         <a href="{% url 'supplier' purchase.supplier.name %}">{{ purchase.supplier }}</a> <br> 
-                        {% comment %} {{ purchase.supplier}}<br> {% endcomment %}
+                        
                     {% endif %}
                     <small style="color: #909494">Ph No : {{ purchase.supplier.phone }}</small> 
                 </td>
                 <td class="align-middle">{% for item in purchase.get_items_list %} {{ item.stock.name }} <br> {% endfor %}</td>
                 <td class="align-middle">{% for item in purchase.get_items_list %} {{ item.quantity }} <br> {% endfor %}</td>
-                <td class="align-middle"></td>    
+                {% comment %} <td class="align-middle"></td>     {% endcomment %}
                 <td class="align-middle">{{ purchase.get_total_price }}</td>
                 <td class="align-middle">{{ purchase.time.date }}</td>
                 <td class="align-middle"> <a href="{% url 'purchase-bill' purchase.billno %}" class="btn ghost-pink">View Bill</a> <a href="{% url 'delete-purchase' purchase.pk %}" class="btn ghost-red">Delete Bill</a> </td>
