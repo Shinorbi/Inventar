@@ -113,6 +113,7 @@ class SupplierView(View):
 # shows the list of bills of all purchases 
 class PurchaseView(ListView):
     model = PurchaseBill
+    mc = PurchaseItem.object.filter(billno=billno)
     template_name = "purchases/purchases_list.html"
     context_object_name = 'bills'
     ordering = ['-time']
@@ -301,16 +302,10 @@ class PurchaseBillView(View):
         if form.is_valid():
             billdetailsobj = PurchaseBillDetails.objects.get(billno=billno)
             
-            # billdetailsobj.eway = request.POST.get("eway")    
-            # billdetailsobj.veh = request.POST.get("veh")
+            
             billdetailsobj.destination = request.POST.get("destination")
-            # billdetailsobj.po = request.POST.get("po")
-            # billdetailsobj.cgst = request.POST.get("cgst")
-            # billdetailsobj.sgst = request.POST.get("sgst")
-            # billdetailsobj.igst = request.POST.get("igst")
-            # billdetailsobj.cess = request.POST.get("cess")
-            # billdetailsobj.tcs = request.POST.get("tcs")
-            billdetailsobj.total = request.POST.get("total")
+         
+            
 
             billdetailsobj.save()
             messages.success(request, "Bill details have been modified successfully")
@@ -343,16 +338,10 @@ class SaleBillView(View):
         if form.is_valid():
             billdetailsobj = SaleBillDetails.objects.get(billno=billno)
             
-            # billdetailsobj.eway = request.POST.get("eway")    
-            # billdetailsobj.veh = request.POST.get("veh")
+            
             billdetailsobj.destination = request.POST.get("destination")
-            # billdetailsobj.po = request.POST.get("po")
-            # billdetailsobj.cgst = request.POST.get("cgst")
-            # billdetailsobj.sgst = request.POST.get("sgst")
-            # billdetailsobj.igst = request.POST.get("igst")
-            # billdetailsobj.cess = request.POST.get("cess")
-            # billdetailsobj.tcs = request.POST.get("tcs")
-            billdetailsobj.total = request.POST.get("total")
+           
+            
 
             billdetailsobj.save()
             messages.success(request, "Bill details have been modified successfully")
@@ -361,5 +350,6 @@ class SaleBillView(View):
             'items'         : SaleItem.objects.filter(billno=billno),
             'billdetails'   : SaleBillDetails.objects.get(billno=billno),
             'bill_base'     : self.bill_base,
+            'total'         : SaleBill.objects.get(billno=billno)
         }
         return render(request, self.template_name, context)

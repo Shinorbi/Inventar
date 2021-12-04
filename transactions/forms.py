@@ -54,9 +54,8 @@ class SupplierForm(forms.ModelForm):
         #self.fields['gstin'].widget.attrs.update({'class': 'textinput form-control', 'maxlength': '15', 'pattern' : '[0-9]{15}', 'title' : 'GSTIN Format Required'})
     class Meta:
         model = Supplier
-        fields = ['name', 'phone', 'address', 'email'
-        #'gstin'
-        ]
+        fields = ['name', 'phone', 'address', 'email']
+
         widgets = {
             'address' : forms.Textarea(
                 attrs = {
@@ -72,13 +71,12 @@ class SaleForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['name'].widget.attrs.update({'class': 'textinput form-control', 'pattern' : '[a-zA-Z\s]{1,50}', 'title' : 'Alphabets and Spaces only', 'required': 'true'})
-        self.fields['phone'].widget.attrs.update({'class': 'textinput form-control', 'maxlength': '10', 'pattern' : '[0-9]{10}', 'title' : 'Numbers only', 'required': 'true'})
+        self.fields['phone'].widget.attrs.update({'class': 'textinput form-control', 'maxlength': '11', 'pattern' : '[0-9]{11}', 'title' : 'Numbers only', 'required': 'true'})
         self.fields['email'].widget.attrs.update({'class': 'textinput form-control'})
-        #self.fields['bin_no'].widget.attrs.update({'class': 'textinput form-control', 'maxlength': '15', 'pattern' : '[A-Z0-9]{15}', 'title' : 'BIN Format Required'})
+        
     class Meta:
         model = SaleBill
         fields = ['name', 'phone', 'address', 'email'
-        #'bin_no'
         ]
         widgets = {
             'address' : forms.Textarea(
